@@ -1,0 +1,31 @@
+<head>
+<div>
+<h1 class="title">Buckeye Exchange</h1>
+</div>
+<div class="search_bar">
+  <form action="search" method="get">
+    <input type="text" name="search_string" id="search" value=<%= @search_string %>>
+	<button type="submit" value="find">GO!</button>
+  </form>
+</div>
+</head>
+
+<ul class="products">
+  <% @item_list.result.each do |item| %>
+    <% if item.availability == 'available' %>
+    <li class="product design">
+    <div>
+        <%= image_tag item.picture if item.picture? %>
+        <h5><%= link_to item[:name], item %></h5>
+        <span class="price"><%= item[:price] %></span>      
+    </div>
+    <% if user_signed_in? %>
+    <div class="addto-cart">
+     <%= link_to "Add to cart", {:controller => "carts", :action => "create", :name => item.name, :price => item.price, :category => item.category, :condition => item.condition, :description => item.description, :picture => item.picture, :item => item }%>
+    </div>
+    <% end %>
+    </li>
+    <% end %>
+  <% end %>
+</ul>
+<%= render 'layouts/footer' %>

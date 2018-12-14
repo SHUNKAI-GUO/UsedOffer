@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 vertical-center">
+        <img class="img-fluid rounded mb-3 mb-md-0" src= <%= @transaction.picture.url %> alt="Image unavailable">
+      </div>
+      <div class="col-md-5">
+        <h3><%= @transaction.name %></h3>
+        <p>Price: $ <%= @transaction.price %></p>
+        <p>Category: <%= @transaction.category %></p>
+        <p>Condition: <%= @transaction.condition %></p>
+        <p>Description: <%= @transaction.description %></p>
+        <div class="btn btn-primary btn-outline btn-block">
+          <%= link_to "Add to cart", {:controller => "carts", :action => "create", :name => @transaction.name, :price => @transaction.price, :category => @transaction.category, :condition => @transaction.condition, :description => @transaction.description, :picture => @transaction.picture, :transaction => @transaction }%>
+        </div>
+  </div>
+</div>
+<div class="btn btn-primary btn-outline btn-block">
+  <%= link_to "Go back to browse all transactions", {:controller => "transactions", :action => "index" }%>
+</div>
+</body>
+
+<%= render 'layouts/footer' %>

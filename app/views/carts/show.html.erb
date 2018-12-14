@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cart.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @cart.price %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @cart.category %>
+</p>
+
+<p>
+  <strong>Condition:</strong>
+  <%= @cart.condition %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @cart.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @cart.user.email %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @cart.user.id %>
+</p>
+
+<span>
+  <%= image_tag @cart.picture if @cart.picture? %>
+</span>
+
+<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %>
+<%= render 'layouts/footer' %>

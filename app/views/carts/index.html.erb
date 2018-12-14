@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  Everything you want
+  <small class="text-muted">And we try our best to make it available</small>
+</h1>
+<br/><br />
+
+<% if current_user.carts.any? %>
+  <% @carts.each do |cart| %>
+    <div class="row">
+      <div class="col-md-7 vertical-center">
+        <img class="img-fluid rounded mb-3 mb-md-0" src= <%= cart.picture %> alt="Image unavailable">
+      </div>
+      <div class="col-md-5">
+        <h3><%= cart.name %></h3>
+        <p>Price: $ <%= cart.price %></p>
+        <p>Category: <%= cart.category %></p>
+        <p>Condition: <%= cart.condition %></p>
+        <p>Description: <%= cart.description %></p>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+<% else %>
+  <h1>
+    You haven't add anything to your cart.
+  </h1>
+<% end %>
+
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="btn btn-primary btn-outline btn-block">
+      <%= link_to "Remove all", {:controller => "carts", :action => "clear"} %>
+    </div>
+    <a></a>
+    <div class="btn btn-primary btn-outline btn-block">
+      <%= link_to "Check out all", {:controller => "transactions", :action => "updateTransaction"} %>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

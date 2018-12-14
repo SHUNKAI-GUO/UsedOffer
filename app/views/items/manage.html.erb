@@ -1,0 +1,80 @@
+<p id="notice"><%= notice %></p>
+<<<<<<< HEAD
+=======
+<h1>My posted items</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th>Condition</th>
+      <th>Description</th>
+      <th>Picture</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+>>>>>>> refs/remotes/origin/master
+
+<h1>
+  Everything you want to sell
+  <small class="text-muted">And we promise to handle them well</small>
+</h1>
+<br/><br />
+
+<% if @items.any? %>
+  <% @items.each do |item| %>
+    <% if item.availability == 'available' %>
+      <div class="row">
+        <div class="col-md-7 vertical-center">
+          <img class="img-fluid rounded mb-3 mb-md-0" src= <%= item.picture.url %> alt="Image unavailable">
+        </div>
+        <div class="col-md-5">
+          <h3><%= item.name %></h3>
+          <p>Price: $ <%= item.price %></p>
+          <p>Category: <%= item.category %></p>
+          <p>Condition: <%= item.condition %></p>
+          <p>Description: <%= item.description %></p>
+          <div class="btn btn-primary btn-outline btn-block">
+            <%= link_to "Edit", {:controller => "items", :action => "edit", :id => item.id } %>
+          </div>
+        </div>
+      </div>
+      <hr>
+    <% else %>
+      <div class="row">
+        <div class="col-md-7 vertical-center">
+          <img class="img-fluid rounded mb-3 mb-md-0" src= <%= item.picture.url %> alt="Image unavailable">
+        </div>
+        <div class="col-md-5">
+          <h3><%= item.name %></h3>
+          <p>Price: $ <%= item.price %></p>
+          <p>Category: <%= item.category %></p>
+          <p>Condition: <%= item.condition %></p>
+          <p>Description: <%= item.description %></p>
+          <div class="btn btn-primary btn-outline btn-block" disabled>
+            Sold
+          </div>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+  <% end %>
+<% else %>
+  <h1>
+    You haven't sold anything yet.
+  </h1>
+<% end %>
+
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="btn btn-primary btn-outline btn-block">
+      <%= link_to "Sell another item", {:controller => "items", :action => "new"} %>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>
+

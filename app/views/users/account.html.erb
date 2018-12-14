@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <body class="profile">
+    <header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <h1 id="title1">
+            <%= image_tag("account.png", alt: "logo", id: "account") %>
+            The personal account page
+        </h1>
+        <h2 id="title2">
+            Welcome, <%= current_user.email %>! <br /> <br />
+            <%= link_to "Log Out".html_safe, destroy_user_session_path, :method => :delete %>
+        </h2>
+    </div>
+    </header>
+    <div class="card">
+        <div class="img">
+            <%= gravatar_for current_user %>
+        </div>
+        <h3>Hi,</h3>
+        <p class="title"><%= current_user.email %>!</p>
+        <p> Your current balance is: <br />$ 1,000</p>
+    </div>
+        <div id="table1">
+            <li class="row">
+                <div class="col column1">Change your password:</div>
+                <div class="col column2"><%= link_to 'Edit', edit_user_registration_path %></div>
+            </li>
+            <li class="row">
+                <div class="col column1">Manage your posted items:</div>
+                <div class="column2"><%= link_to 'Posted items', manage_items_path %></div>
+            </li>
+            <li class="row">
+                <div class="col column1">Your parchase history:</div>
+                <div class="col column2"><%= link_to 'Parchased items', view_transactions_path %></div>
+            </li>
+        </div>
+        <%= render 'layouts/footer' %>
+    </body>
+</html>

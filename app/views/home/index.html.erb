@@ -1,0 +1,37 @@
+<div class="mainpage">
+<% if user_signed_in? %> <!-- Provided by devise -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid"> 
+    <div class="navbar-nav">
+      <%= link_to "Account".html_safe, account_path %>
+      <%= link_to "Sell".html_safe, new_item_path %> 
+      <%= link_to "Browse All".html_safe,  browse_all_path %> 
+      <%= link_to "My Cart".html_safe,  view_cart_path %>
+      <%= link_to "My Sells ".html_safe,  manage_items_path %>
+      <%= link_to "Order".html_safe,  view_transactions_path %>
+      <%= link_to "Log Out ".html_safe, destroy_user_session_path, :method => :delete %>
+      <%= link_to 'About', about_path %>
+    </div>
+	</div>
+</nav>
+    <% end %>
+    <% unless user_signed_in? %>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid"> 
+    <div class="navbar-nav">
+        <%= link_to 'Sign up', new_user_registration_path %> 
+        <%= link_to 'Log in', new_user_session_path %>
+    </div>
+	</div>
+</nav>
+<% end %>
+</div>
+<div>
+<h1 class="title">Buckeye Exchange</h1>
+<div class="search_bar">
+  <form action="search" method="get">
+    <input type="text" name="search_string" id="search">
+    <button type="submit" value="find">  GO!</button>
+  </form>
+</div>
+</div>

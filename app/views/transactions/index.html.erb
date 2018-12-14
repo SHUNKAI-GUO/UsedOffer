@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  Everything you bought
+  <small class="text-muted">And we hope you will like it</small>
+</h1>
+<br/><br />
+
+<% if current_user.transactions.any? %>
+  <% @transactions.each do |transaction| %>
+    <div class="row">
+      <div class="col-md-7 vertical-center">
+        <img class="img-fluid rounded mb-3 mb-md-0" src= <%= transaction.picture %> alt="Image unavailable">
+      </div>
+      <div class="col-md-5">
+        <h3><%= transaction.name %></h3>
+        <p>Price: $ <%= transaction.price %></p>
+        <p>Category: <%= transaction.category %></p>
+        <p>Condition: <%= transaction.condition %></p>
+        <p>Description: <%= transaction.description %></p>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+<% else %>
+  <h1>
+    You haven't bought anything.
+  </h1>
+<% end %>
+
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="btn btn-primary btn-outline btn-block">
+      <%= link_to "Go back to browse all items", {:controller => "items", :action => "index" }%>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>
